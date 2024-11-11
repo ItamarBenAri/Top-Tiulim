@@ -7,6 +7,7 @@
  */
 
  .Header {
+    box-sizing: border-box;
     display: flex;                              /* Flex layout to align header items horizontally */
     align-items: center;                        /* Centers items vertically */
     justify-content: space-between;             /* Distributes items evenly with space between */
@@ -21,7 +22,7 @@
     top: 0;
     left: 0;
     right: 0;
-    width: calc(100% - 0);                                /* Full-width header */
+    width: 100%;                                /* Full-width header */
 }
 
 /* Logo Styling */
