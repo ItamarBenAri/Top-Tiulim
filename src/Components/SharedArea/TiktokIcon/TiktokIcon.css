@@ -1,0 +1,24 @@
+/**
+ * TiktokIcon Styles
+ * -------------------
+ * Provides styling for the TikTok icon component, including layout, padding, and 
+ * SVG-specific attributes for consistent icon appearance across the application.
+ * 
+ * Classes:
+ * - `.TiktokIcon`: Applies general styling to the TikTok icon wrapper, including 
+ *   inline display and padding for spacing.
+ * - `.TiktokIcon .tiktok-svg`: Specifically targets the SVG within the TikTok icon, 
+ *   setting its fill color and size.
+ */
+
+ .TiktokIcon {
+    display: inline;            /* Ensures the icon is displayed inline with text or other icons */
+    padding-left: 1px;          /* Adds spacing to the left of the icon */
+    padding-right: 1px;         /* Adds spacing to the right of the icon */
+}
+
+.TiktokIcon .tiktok-svg {
+    fill: #000000;              /* Sets the SVG icon color to black */
+    width: 23px;                /* Defines a consistent width for the TikTok SVG icon */
+    height: 23px;               /* Defines a consistent height for the TikTok SVG icon */
+}

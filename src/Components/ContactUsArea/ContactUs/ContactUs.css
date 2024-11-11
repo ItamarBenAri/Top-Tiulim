@@ -1,0 +1,11 @@
+/**
+ * ContactUs Section Styles
+ * -------------------------
+ * Defines the main layout styling for the "Contact Us" section.
+ * Restricts the maximum width and centers the section within its container.
+ */
+
+ .ContactUs {
+    max-width: 600px;       /* Limits the section width to 600px for improved readability */
+    margin: 0 auto;         /* Centers the section horizontally within its parent container */
+}

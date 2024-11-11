@@ -1,0 +1,161 @@
+/**
+ * Header Styles
+ * --------------
+ * Provides styling for the header component, including layout, responsive behavior, and animations.
+ * Ensures consistent styling for navigation links, logos, and hamburger menu functionality across
+ * different screen sizes.
+ */
+
+ .Header {
+    display: flex;                              /* Flex layout to align header items horizontally */
+    align-items: center;                        /* Centers items vertically */
+    justify-content: space-between;             /* Distributes items evenly with space between */
+    flex-wrap: wrap;                            /* Wraps items if they exceed container width */
+    background: rgba(255, 255, 255, 0.85);      /* Semi-transparent white background */
+    backdrop-filter: blur(10px);                /* Applies a blur effect for a frosted glass look */
+    padding: 0.5rem 1rem;                       /* Adds padding around header content */
+    direction: rtl;                             /* Sets text direction to right-to-left */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);   /* Adds a subtle shadow for separation */
+    z-index: 1100;                              /* Elevates header above other elements */
+    position: fixed;                            /* Fixes header to the top of the viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: calc(100% , 0);                                /* Full-width header */
+}
+
+/* Logo Styling */
+.Header .logoImage {
+    width: 170px;                               /* Sets default logo width */
+}
+
+/* Responsive logo resizing */
+@media (max-width: 450px) {
+    .Header .logoImage {
+        width: 120px;                           /* Reduces logo width on smaller screens */
+    }
+}
+
+/* Hamburger Menu Styling */
+.Header .hamburger {
+    display: none;                              /* Hides hamburger on larger screens */
+    flex-direction: column;                     /* Vertically stacks bars in hamburger */
+    cursor: pointer;                            /* Changes cursor to pointer on hover */
+    margin: 0;
+}
+
+.Header .hamburger span {
+    height: 3px;                                /* Sets height for each hamburger bar */
+    width: 25px;                                /* Sets width for each bar */
+    background: #333;                           /* Dark color for visibility */
+    margin-bottom: 4px;                         /* Adds space between bars */
+    border-radius: 5px;                         /* Rounds bar edges */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Animates open/close states */
+}
+
+.Header .hamburger span:last-child {
+    margin-bottom: 0;                           /* Removes margin from last bar */
+}
+
+/* Hamburger Open State Styling */
+.Header .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px); /* Rotates top bar for open effect */
+}
+
+.Header .hamburger.open span:nth-child(2) {
+    opacity: 0;                                 /* Hides middle bar for open effect */
+}
+
+.Header .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px); /* Rotates bottom bar for open effect */
+}
+
+/* Responsive Hamburger and Menu Display */
+@media (max-width: 1350px) {
+    .Header .hamburger {
+        display: flex;                          /* Shows hamburger on smaller screens */
+    }
+    .Header .menu {
+        overflow: hidden;                       /* Hides overflow for smooth menu expansion */
+        flex-direction: column;                 /* Stacks menu items vertically */
+        width: 100%;
+        max-height: 0;                          /* Collapses menu by default */
+        transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition */
+        opacity: 0;
+    }
+    .Header .menu.open {
+        max-height: 340px;                      /* Expands menu when open */
+        opacity: 1;
+    }
+}
+
+/* Menu Styling */
+.Header .menu {
+    display: flex;                              /* Displays menu items horizontally by default */
+    justify-content: space-between;             /* Spreads items within menu */
+    align-items: center;                        /* Centers items vertically */
+    position: relative;                         /* Relative positioning for internal alignment */
+}
+
+/* Menu Link Styling */
+.Header .menu-link {
+    padding: 10px 20px;                         /* Adds padding around link text */
+    margin: 1.2rem;                             /* Adds margin for spacing between links */
+    cursor: pointer;                            /* Pointer cursor on hover */
+    text-align: center;                         /* Centers text in links */
+    text-decoration: none;                      /* Removes underline from links */
+    color: #333;                                /* Sets dark text color */
+    transition: all 0.3s ease-in;               /* Smooth transition on hover */
+    font-size: 1.2rem;                          /* Sets font size */
+    border: 1px solid transparent;              /* Border for hover effect */
+    border-radius: 25px;                        /* Rounds link edges */
+}
+
+.Header .menu-link:hover {
+    color: #007bff;                             /* Changes color on hover */
+    background: rgba(241, 241, 241, 0.6);       /* Light background on hover */
+}
+
+.Header .menu-link.active {
+    text-decoration: underline;                 /* Underlines active link */
+    text-underline-offset: 8px;                 /* Adds offset for underline */
+    color: #007bff;                             /* Sets active color */
+    background: rgba(241, 241, 241, 0.6);       /* Active background */
+}
+
+/* Responsive Menu Link Styling */
+@media (max-width: 1350px) {
+    .Header .menu-link {
+        width: 100%;                            /* Full width on small screens */
+        text-align: center;
+        padding: 10px 0;                        /* Adjusts padding for vertical layout */
+        margin: 10px 0;                         /* Reduces margin between links */
+    }
+}
+
+/* Logo and Button Container */
+.Header .logo-button-container {
+    display: flex;                              /* Flex layout to align logo and button */
+    align-items: center;                        /* Centers items vertically */
+}
+
+/* Button Styling */
+.Header .call-button-large,
+.Header .call-button-small {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+/* Display small call button only on smaller screens */
+.Header .call-button-small {
+    display: none;
+}
+
+@media (max-width: 1350px) {
+    .Header .call-button-small {
+        display: block;                         /* Shows small button on smaller screens */
+    }
+    .Header .call-button-large {
+        display: none;                          /* Hides large button on smaller screens */
+    }
+}

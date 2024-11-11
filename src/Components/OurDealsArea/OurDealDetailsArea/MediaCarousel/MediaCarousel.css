@@ -1,0 +1,58 @@
+/**
+ * MediaCarousel Styles
+ * ---------------------
+ * Defines the primary styles for the MediaCarousel component, including animations, 
+ * responsive image adjustments, and container layout settings. Focuses on smooth transitions 
+ * for background images and visually appealing animations for carousel elements.
+ */
+
+ .MediaCarousel {
+    background-color: black;                   /* Sets a black background to improve media contrast */
+    background-size: cover;                    /* Ensures the background image covers the entire element */
+    background-position: center;               /* Centers the background image */
+    animation: slideBackground 0.5s ease forwards;  /* Animates the background position for a smooth effect */
+    transition: background-image 0.5s ease;    /* Smooth transition when background images change */
+}
+
+/* Keyframe Animation for Background Slide */
+@keyframes slideBackground {
+    from {
+        background-position: 0% center;        /* Starts background position from the left */
+    }
+    to {
+        background-position: 100% center;      /* Ends background position on the right */
+    }
+}
+
+/* Keyframe Animation for Slide In Effect */
+@keyframes slideIn {
+    from {
+        transform: translateX(0);              /* Starts the element at the original position */
+        opacity: 0;                            /* Element starts as invisible */
+    }
+    to {
+        transform: translateX(100%);           /* Slides the element in from the right */
+        opacity: 1;                            /* Element fades in to full opacity */
+    }
+}
+
+.MediaCarousel .media-container {
+    display: flex;                             /* Flex layout to center media horizontally */
+    justify-content: center;                   /* Centers media horizontally */
+    align-items: center;                       /* Centers media vertically */
+    height: 100%;                              /* Full height to occupy container space */
+    overflow: hidden;                          /* Hides any overflow from large media content */
+    backdrop-filter: blur(15px);               /* Applies a blur to enhance background images */
+}
+
+.MediaCarousel .image {
+    width: 100%;                               /* Ensures image spans the full width */
+    min-height: 300px;                         /* Minimum height to ensure consistent visibility */
+    max-height: 450px;                         /* Limits height to maintain aspect ratio */
+    object-fit: contain;                       /* Fits the image within boundaries without cropping */
+}
+
+.MediaCarousel .video-err {
+    color: #fff;                               /* Sets text color to white for readability */
+    direction: rtl;                            /* Right-to-left text direction for compatibility */
+}

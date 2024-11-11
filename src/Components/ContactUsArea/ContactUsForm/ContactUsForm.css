@@ -1,0 +1,15 @@
+/**
+ * ContactUsForm Styles
+ * ---------------------
+ * Defines the main styling for the "Contact Us" form section, including layout, alignment,
+ * padding, and positioning. Ensures a responsive design and consistent spacing.
+ */
+
+ .ContactUsForm {
+    width: 100%;                     /* Sets form width to fully utilize available space within its container */
+    box-sizing: border-box;           /* Includes padding and border within the element's total width and height */
+    text-align: right;                /* Aligns form text and elements to the right, matching RTL design */
+    padding: 20px;                    /* Adds padding inside the form for consistent spacing around elements */
+    margin: 20px auto;                /* Centers the form horizontally with vertical spacing from adjacent elements */
+    position: relative;               /* Sets relative positioning to allow for absolute positioning of child elements if needed */
+}

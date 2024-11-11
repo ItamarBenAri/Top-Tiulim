@@ -1,0 +1,16 @@
+/**
+ * Footer Styles
+ * --------------
+ * Provides styling configurations for links within the footer component, ensuring a cohesive 
+ * and user-friendly design. Styles links to remove default styling and maintain uniformity.
+ */
+
+ .Footer a {
+    all: unset;                          /* Resets all default styles for links, removing browser-specific styles */
+    cursor: pointer;                     /* Changes cursor to pointer, indicating clickable links */
+}
+
+.Footer .contact-info-link {
+    text-decoration: none;               /* Removes underline from contact info links */
+    color: inherit;                      /* Inherits the color from parent element, ensuring consistent styling */
+}

@@ -1,0 +1,49 @@
+/**
+ * Global Styles
+ * -------------
+ * This stylesheet defines global styles for the HTML document, targeting the document root and body elements
+ * as well as applying consistent typography across the application.
+ * Additionally, it removes scrollbars in a cross-browser compatible way for a cleaner UI experience.
+ */
+
+/* Ensures root elements take full viewport height, removes default margin, centers text,
+   and applies a uniform font across the application */
+html,
+body,
+#root {
+    margin: 0;
+    /* Removes default margin */
+    height: 100%;
+    /* Ensures full viewport height */
+    text-align: center;
+    /* Centers text for the body */
+    background-color: inherit;
+    /* Inherits background color */
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    /* Sets primary font-family */
+}
+
+/* Ensures all child elements within root inherit consistent typography */
+html,
+body,
+#root * {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari, and Opera for a minimalistic design */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar {
+    display: none;
+    /* Hides the scrollbar */
+}
+
+/* Hide scrollbar for IE, Edge, and Firefox for cross-browser consistency */
+html,
+body,
+#root {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}

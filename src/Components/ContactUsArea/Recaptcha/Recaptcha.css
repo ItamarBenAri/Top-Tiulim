@@ -1,0 +1,18 @@
+/**
+ * Recaptcha Styles
+ * -----------------
+ * Provides styling for the reCAPTCHA component and its loading state, ensuring a consistent
+ * appearance and alignment within the "Contact Us" form.
+ */
+
+ .Recaptcha .recaptcha-loading {
+    font-size: 16px;               /* Sets font size for loading message to maintain readability */
+    color: #333;                    /* Applies a dark gray color for text visibility */
+    margin-right: 10px;             /* Adds right margin to separate loading text from other elements */
+    padding-top: 16px;              /* Adds top padding to align the loading message within its container */
+}
+
+.Recaptcha .recaptcha-box {
+    display: flex;                  /* Uses flexbox for horizontal alignment */
+    justify-content: center;        /* Centers the reCAPTCHA box horizontally within its container */
+}

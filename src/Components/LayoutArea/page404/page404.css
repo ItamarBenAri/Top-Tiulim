@@ -1,0 +1,43 @@
+/**
+ * 404 Page Styles
+ * ----------------
+ * Defines styling for the "Page Not Found" (404) page, ensuring consistent layout and responsive
+ * adjustments across various screen sizes. The design emphasizes a central image and message
+ * to inform users they have reached a non-existent page.
+ */
+
+ .page404 {
+    margin-bottom: 40px;                     /* Adds bottom margin to separate content from footer */
+}
+
+.page404 > img {
+    width: 100%;                             /* Ensures the image is responsive, taking full width */
+    max-width: 600px;                        /* Limits image width on larger screens for readability */
+}
+
+.page404 > p {
+    text-align: center;                      /* Centers the error message text */
+    color: #333;                             /* Sets a dark color for high contrast and readability */
+    font-size: 1.5rem;                       /* Increases font size for emphasis */
+}
+
+/* Responsive Image Sizing for Small Screens */
+@media (max-width: 500px) {
+    .page404 > img {
+        min-width: 280px;                    /* Sets minimum width for images on very small screens */
+    }
+}
+
+/* Responsive Image Sizing for Medium-Small Screens */
+@media (min-width: 500px) and (max-width: 767px) {
+    .page404 > img {
+        min-width: 480px;                    /* Adjusts image size for medium-small screens */
+    }
+}
+
+/* Responsive Image Sizing for Medium-Large Screens */
+@media (min-width: 767px) {
+    .page404 > img {
+        min-width: 680px;                    /* Ensures a larger image for better visibility on wider screens */
+    }
+}

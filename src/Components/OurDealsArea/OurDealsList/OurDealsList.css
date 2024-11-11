@@ -1,0 +1,17 @@
+/**
+ * OurDealsList Styles
+ * ---------------------
+ * Defines the layout for the OurDealsList component, ensuring that individual deal cards 
+ * are displayed in a responsive and visually appealing grid layout. Provides spacing and alignment
+ * to optimize the presentation of multiple deals.
+ */
+
+ .OurDealsList {
+    margin-top: 10px;                            /* Adds spacing above the list to separate it from preceding elements */
+    margin-bottom: 20px;                         /* Adds spacing below the list to separate it from following elements */
+    display: flex;                               /* Uses flex layout to control the arrangement of deal cards */
+    flex-wrap: wrap;                             /* Allows cards to wrap onto multiple lines for responsiveness */
+    justify-content: center;                     /* Centers deal cards horizontally within the container */
+    align-items: center;                         /* Vertically centers deal cards within each row */
+    gap: 32px;                                   /* Adds space between individual deal cards for a balanced layout */
+}

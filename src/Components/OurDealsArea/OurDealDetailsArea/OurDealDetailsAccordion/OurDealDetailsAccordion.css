@@ -1,0 +1,29 @@
+/**
+ * OurDealDetailsAccordion Styles
+ * --------------------------------
+ * Defines styles for the OurDealDetailsAccordion component, which organizes trip details
+ * into expandable sections. This styling provides a smooth user experience by hiding content
+ * until expanded, managing image display, and maintaining responsive design.
+ */
+
+ .OurDealDetailsAccordion .Mui-expanded .section-block {
+    display: block;                             /* Reveals the section content when expanded */
+    margin-bottom: 1.5rem;                      /* Adds space below each expanded section */
+}
+
+.OurDealDetailsAccordion .section-block {
+    display: none;                              /* Hides section content by default */
+}
+
+.OurDealDetailsAccordion .section-block img {
+    display: block;                             /* Ensures images within section blocks are displayed */
+    margin-left: auto;                          /* Aligns images to the right within their container */
+}
+
+.OurDealDetailsAccordion .trip-image {
+    max-height: 300px;                          /* Limits image height to maintain layout consistency */
+    width: 100%;                                /* Allows image to take full width of the container */
+    max-width: 600px;                           /* Sets a maximum width to prevent oversized display */
+    border-radius: 8px;                         /* Rounds corners for a softer, more modern look */
+    margin-top: 0.5em;                          /* Adds spacing above the image for separation */
+}

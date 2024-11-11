@@ -1,0 +1,25 @@
+/**
+ * Layout Styles
+ * --------------
+ * Defines the main layout structure and styling, ensuring a flexible and responsive design
+ * for both desktop and mobile views. The layout is organized to maximize vertical space usage
+ * and provide adaptive padding for the main content area.
+ */
+
+ .Layout {
+    display: flex;                            /* Flex layout to allow flexible content alignment */
+    flex-direction: column;                   /* Arranges child elements in a vertical column */
+    min-height: 100%;                         /* Ensures the layout takes up the full viewport height */
+}
+
+.Layout > main {
+    flex-grow: 1;                             /* Allows the main content to grow and occupy available space */
+    padding-top: 110px;                       /* Adds top padding to offset the header's fixed height */
+}
+
+/* Responsive Padding Adjustment for Smaller Screens */
+@media (max-width: 1350px) {
+    .Layout > main {
+        padding-top: 80px;                    /* Reduces top padding on smaller screens for balanced spacing */
+    }
+}

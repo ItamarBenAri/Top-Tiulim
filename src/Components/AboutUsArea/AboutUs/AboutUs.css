@@ -1,0 +1,26 @@
+/* 
+  AboutUs Section Styles
+  -----------------------
+  Styling definitions for the "About Us" section, designed to ensure a 
+  visually appealing and interactive user experience.
+*/
+
+/* Root styling for About Us section */
+/* Adds vertical spacing above and below the section for better visual separation */
+.AboutUs {
+    margin-top: 40px; /* 40px margin at the top of the section */
+    margin-bottom: 40px; /* 40px margin at the bottom of the section */
+}
+
+/* Card Styling for About Us */
+/* Base styling for cards, utilizing Material UI’s Card component class for transition effects */
+.AboutUs .MuiCard-root {
+    transition: box-shadow 0.3s ease; /* Smooth transition effect when shadow changes */
+}
+
+/* Card Hover Effect */
+/* Adds a shadow effect when the card is hovered over, enhancing interactivity */
+/* Shadow adds a subtle depth, improving visual hierarchy */
+.AboutUs .MuiCard-root:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Shadow effect with mild opacity for a soft hover effect */
+}

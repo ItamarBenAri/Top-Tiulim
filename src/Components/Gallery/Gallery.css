@@ -1,0 +1,17 @@
+/**
+ * Gallery Styles
+ * ---------------
+ * Provides layout and styling configurations for the main gallery component and individual images.
+ * Ensures a consistent appearance and alignment within the gallery, enhancing the user experience.
+ */
+
+ .Gallery {
+    max-width: 600px;                  /* Restricts the gallery width to 600px for improved readability and alignment */
+    margin: 0 auto;                    /* Centers the gallery within its parent container */
+}
+
+.Gallery .image-item {
+    max-height: 200px;                 /* Limits image height to 200px to maintain a consistent grid layout */
+    width: 100%;                       /* Expands the image to fully occupy the container width */
+    object-fit: cover;                 /* Ensures the image fills the container while preserving aspect ratio */
+}

@@ -1,0 +1,13 @@
+/**
+ * OurDealPromoCard Styles
+ * -------------------------
+ * Defines the main container style for the OurDealPromoCard component. 
+ * Ensures that the card is centered within its container and spans the full width.
+ */
+
+ .OurDealPromoCard {
+    width: 100%;                              /* Sets the card to take full width of the container */
+    display: flex;                            /* Applies flex layout for horizontal alignment */
+    justify-content: center;                  /* Centers the card content within the container */
+    position: static;                         /* Sets the card's position to static, aligning it naturally */
+}

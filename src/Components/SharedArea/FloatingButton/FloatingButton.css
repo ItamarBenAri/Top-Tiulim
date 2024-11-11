@@ -1,0 +1,25 @@
+/**
+ * FloatingButton Styles
+ * ----------------------
+ * Defines the layout and interaction effects for the FloatingButton component, 
+ * including icon alignment, link styling, and hover scaling effects. Ensures
+ * that the button and its icon are centered and responsive to user interactions.
+ */
+
+ .FloatingButton .iconWrapper {
+    display: flex;                             /* Enables flex layout for positioning */
+    align-items: center;                       /* Vertically centers the icon within the button */
+    justify-content: center;                   /* Horizontally centers the icon within the button */
+    width: 100%;                               /* Ensures the icon wrapper spans the full width of the button */
+    height: 100%;                              /* Ensures the icon wrapper spans the full height of the button */
+}
+
+.FloatingButton a {
+    all: unset;                                /* Removes default link styles for a clean, custom appearance */
+    margin-top: 4px;                           /* Adds a slight top margin for visual balance */
+    transition: 0.5s;                          /* Smooth transition for hover scaling */
+}
+
+.FloatingButton a:hover {
+    scale: 1.07;                               /* Scales the link slightly on hover for a subtle interaction effect */
+}

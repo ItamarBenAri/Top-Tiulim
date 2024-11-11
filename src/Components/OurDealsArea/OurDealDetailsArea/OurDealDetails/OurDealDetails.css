@@ -1,0 +1,63 @@
+/**
+ * OurDealDetails Styles
+ * ----------------------
+ * Provides styling for the OurDealDetails component, ensuring a clean and user-friendly layout
+ * for displaying detailed information about a specific deal. This styling includes layout adjustments,
+ * typography enhancements, and button interactions to improve the user experience.
+ */
+
+ .OurDealDetails {
+    padding: 20px;                             /* Adds padding around the main details section */
+    max-width: 900px;                          /* Limits width for readability on large screens */
+    margin: 0 auto;                            /* Centers the component within its container */
+}
+
+.OurDealDetails .content {
+    padding: 20px 0;                           /* Adds vertical padding to content for spacing */
+}
+
+.OurDealDetails .deal-meta {
+    font-size: 1.1em;                          /* Slightly increases font size for emphasis */
+    color: #6c757d;                            /* Uses a muted color for secondary deal information */
+    margin-bottom: 15px;                       /* Adds space below metadata section */
+    display: flex;                             /* Flex layout for horizontal alignment */
+    justify-content: space-between;            /* Distributes space between metadata items */
+}
+
+/* Typography within .deal-meta for vertical alignment */
+.OurDealDetails > .deal-meta > .MuiTypography-subtitle1 {
+    display: flex;                             /* Flex layout to align items horizontally */
+    align-items: center;                       /* Centers items vertically for a balanced look */
+}
+
+.OurDealDetails .deal-meta .MuiSvgIcon-root {
+    margin-right: 4px;                         /* Adds space between icon and text */
+    font-size: 1.2em;                          /* Increases icon size to match text emphasis */
+}
+
+.OurDealDetails .description {
+    margin-bottom: 20px;                       /* Adds space below description text */
+    font-size: 1.05em;                         /* Adjusts font size for readability */
+    line-height: 1.6;                          /* Sets line height for comfortable reading */
+    color: #4a4a4a;                            /* Dark gray color for primary text */
+    text-align: justify;                       /* Justifies text for a clean, aligned appearance */
+}
+
+.OurDealDetails .book-now-button {
+    font-weight: bold;                         /* Makes button text bold for emphasis */
+    font-size: 1.1em;                          /* Slightly larger font for visibility */
+    text-transform: none;                      /* Maintains original casing for button text */
+    background-color: #007bff;                 /* Primary blue background for the button */
+    color: white;                              /* White text for contrast on the blue background */
+    transition: background-color 0.3s ease;    /* Smooth color transition on hover */
+}
+
+.OurDealDetails .book-now-button:hover {
+    background-color: #0056b3;                 /* Darkens button color on hover for interaction feedback */
+}
+
+.OurDealDetails .skeleton {
+    margin-bottom: 0;                          /* Removes bottom margin for precise alignment */
+    margin-top: 6px;                           /* Adds slight top margin for spacing */
+    width: 40%;                                /* Limits width for a realistic loading effect */
+}
