@@ -55,9 +55,9 @@ export function OurDealDetails(): JSX.Element {
                 .then((deals) => {
                     const foundDeal = deals.find(d => d.id === dealId);
                     if (foundDeal) setGlobalStateDeal(foundDeal);
-                    else navigate("/Top-Tiulim/pageNotFound");  // Redirects if no deal found
+                    else navigate("/pageNotFound");  // Redirects if no deal found
                 })
-                .catch(() => navigate("/Top-Tiulim/pageNotFound")); // Handles fetch error by redirecting
+                .catch(() => navigate("/pageNotFound")); // Handles fetch error by redirecting
         }
     }, [dealId, globalStateDeal, navigate]);
 

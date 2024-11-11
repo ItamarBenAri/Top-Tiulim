@@ -31,14 +31,13 @@ function Routing(): JSX.Element {
                 ))}
 
                 {/* Dynamic Route for Deal Details */}
-                <Route path="/Top-Tiulim/hot-deals/:dealId" element={<OurDealDetails />} />
+                <Route path="/hot-deals/:dealId" element={<OurDealDetails />} />
 
                 {/* Default Route - Redirects to the main deals page */}
-                <Route path="/Top-Tiulim" element={<Navigate to="/Top-Tiulim/hot-deals" />} />
-                <Route path="/" element={<Navigate to="/Top-Tiulim/hot-deals" />} />
+                <Route path="/" element={<Navigate to="/hot-deals" />} />
 
                 {/* 404 Routes - Catch-all for unknown paths */}
-                <Route path="/Top-Tiulim/pageNotFound" element={<Page404 />} />   {/* Specific "not found" page */}
+                <Route path="/pageNotFound" element={<Page404 />} />   {/* Specific "not found" page */}
                 <Route path="*" element={<Page404 />} />               {/* Fallback for unmatched routes */}
                 
             </Routes>

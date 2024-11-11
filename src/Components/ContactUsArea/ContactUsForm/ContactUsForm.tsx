@@ -50,7 +50,7 @@ export function ContactUsForm(): JSX.Element {
                 setMessageSending(false);      // Reset message-sending state
                 toast.success("ההודעה נשלחה בהצלחה!"); // Show success toast
                 methods.reset();               // Reset form fields
-                navigate("/Top-Tiulim/hot-deals");        // Navigate to "hot deals" page
+                navigate("/hot-deals");        // Navigate to "hot deals" page
             })
             .catch((error: any) => {
                 toast.error("אירעה שגיאה, אנא נסה שוב!"); // Show error toast

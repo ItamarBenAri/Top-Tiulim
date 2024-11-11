@@ -19,7 +19,7 @@ A key feature of **Top Tiulim** is the implementation of a **service worker** fo
 
 1. **Clone the Repository**: 
    ```bash
-   git clone https://github.com/your-username/Top-Tiulim.git
+   git clone https://github.com/itamarBenAri/Top-Tiulim.git
    ```
 2. **Navigate to the Directory**:
    ```bash
