@@ -30,25 +30,25 @@ import AppTheme from "../Theme/AppTheme";
 export const pages: AppPage[] = [
     {
         name: 'דילים חמים',                           // Display name for the 'Hot Deals' page
-        route: "/hot-deals",                          // Route path for 'Hot Deals'
+        route: "/Top-Tiulim/hot-deals",                          // Route path for 'Hot Deals'
         icon: <Whatshot sx={AppTheme.headerIcon}/>,   // Fire icon styled using `AppTheme`
         element: <OurDealsList />                     // Component to render for the 'Hot Deals' page
     },
     {
         name: "גלריה",                                // Display name for the 'Gallery' page
-        route: "/gallery",                            // Route path for 'Gallery'
+        route: "/Top-Tiulim/gallery",                            // Route path for 'Gallery'
         icon: <Collections sx={AppTheme.headerIcon}/>,// Collections icon styled using `AppTheme`
         element: <Gallery />                          // Component to render for the 'Gallery' page
     },
     {
         name: "אודותינו",                             // Display name for the 'About Us' page
-        route: "/about-us",                           // Route path for 'About Us'
+        route: "/Top-Tiulim/about-us",                           // Route path for 'About Us'
         icon: <Info sx={AppTheme.headerIcon}/>,       // Info icon styled using `AppTheme`
         element: <AboutUs />                          // Component to render for the 'About Us' page
     },
     {
         name: "צור קשר",                              // Display name for the 'Contact Us' page
-        route: "/contact-us",                         // Route path for 'Contact Us'
+        route: "/Top-Tiulim/contact-us",                         // Route path for 'Contact Us'
         icon: <ContactMailRounded sx={AppTheme.headerIcon}/>, // Contact icon styled using `AppTheme`
         element: <ContactUs />                        // Component to render for the 'Contact Us' page
     }

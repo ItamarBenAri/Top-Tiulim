@@ -21,7 +21,7 @@
     top: 0;
     left: 0;
     right: 0;
-    width: calc(100% , 0);                                /* Full-width header */
+    width: calc(100% - 0);                                /* Full-width header */
 }
 
 /* Logo Styling */

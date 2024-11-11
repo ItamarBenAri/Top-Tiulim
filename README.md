@@ -19,11 +19,11 @@ A key feature of **Top Tiulim** is the implementation of a **service worker** fo
 
 1. **Clone the Repository**: 
    ```bash
-   git clone https://github.com/your-username/top-tiulim.git
+   git clone https://github.com/your-username/Top-Tiulim.git
    ```
 2. **Navigate to the Directory**:
    ```bash
-   cd top-tiulim
+   cd Top-Tiulim
    ```
 3. **Install Dependencies**:
    ```bash
@@ -57,4 +57,6 @@ Upon installation and starting the server, navigate to `http://localhost:3000` i
 
 ## Author <a name="author"></a>
 
-This website and all accompanying code, assets, and service worker implementation are copyright © [Your Name/Your Company Name], 2024. All rights reserved.
+This website and all accompanying code, assets, and service worker implementation are created by Itamar Ben Ari - [etamar234@gmail.com](mailto:etamar234@gmail.com). All rights reserved.
+
+

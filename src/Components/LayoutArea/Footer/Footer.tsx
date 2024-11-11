@@ -25,14 +25,14 @@ export function Footer(): JSX.Element {
 
     // Internal navigation links for the website, including route paths and descriptive text
     const internalLinks = [
-        { to: "/hot-deals/12565", text: "טיול הרים לתאילנד" },
-        { to: "/hot-deals/12564", text: "טיול ג'ונגלים בתאילנד" },
-        { to: "/hot-deals/12563", text: "טיול מאורגן לבטומי" },
-        { to: "/hot-deals/12566", text: "טיול ג'יפים בדובאי" },
-        { to: "/hot-deals/12568", text: "סיור היסטורי בירושלים העתיקה" },
-        { to: "/about-us", text: "אודותינו" },
-        { to: "/hot-deals/12567", text: "טיול נחלים בעין בוקק" },
-        { to: "/contact-us", text: "צור קשר" },
+        { to: "/Top-Tiulim/hot-deals/12565", text: "טיול הרים לתאילנד" },
+        { to: "/Top-Tiulim/hot-deals/12564", text: "טיול ג'ונגלים בתאילנד" },
+        { to: "/Top-Tiulim/hot-deals/12563", text: "טיול מאורגן לבטומי" },
+        { to: "/Top-Tiulim/hot-deals/12566", text: "טיול ג'יפים בדובאי" },
+        { to: "/Top-Tiulim/hot-deals/12568", text: "סיור היסטורי בירושלים העתיקה" },
+        { to: "/Top-Tiulim/about-us", text: "אודותינו" },
+        { to: "/Top-Tiulim/hot-deals/12567", text: "טיול נחלים בעין בוקק" },
+        { to: "/Top-Tiulim/contact-us", text: "צור קשר" },
     ];
 
     // Contact information links for email and phone with tooltips
