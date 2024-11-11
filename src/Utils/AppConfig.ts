@@ -19,7 +19,7 @@ class AppConfig {
      * Path to the Excel file containing deal data.
      * Used in services that load static data for deals and gallery items.
      */
-    public readonly topTiulimFileSrc = `${process.env.PUBLIC_URL}/assets/files/ourDeals.xlsx`;
+    public readonly topTiulimFileSrc = process.env.NODE_ENV === "development" ? "/assets/files/ourDeals.xlsx" : "/Top-Tiulim/assets/files/ourDeals.xlsx";
 
     /**
      * Google reCAPTCHA public site key, configured through environment variables.
