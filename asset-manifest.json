@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Top-Tiulim/static/css/main.b13f2419.css",
-    "main.js": "/Top-Tiulim/static/js/main.6e202883.js",
+    "main.js": "/Top-Tiulim/static/js/main.0e33ec2e.js",
     "static/js/206.b55973ca.chunk.js": "/Top-Tiulim/static/js/206.b55973ca.chunk.js",
     "reactPlayerYouTube.js": "/Top-Tiulim/static/js/reactPlayerYouTube.c7517283.chunk.js",
     "reactPlayerSoundCloud.js": "/Top-Tiulim/static/js/reactPlayerSoundCloud.df0fc3cc.chunk.js",
@@ -26,6 +26,6 @@
   },
   "entrypoints": [
     "static/css/main.b13f2419.css",
-    "static/js/main.6e202883.js"
+    "static/js/main.0e33ec2e.js"
   ]
 }
