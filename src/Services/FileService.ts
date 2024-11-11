@@ -15,7 +15,7 @@ import { appConfig } from "../Utils/AppConfig";
 import * as XLSX from "xlsx";
 
 class FileService {
-    
+
     /**
      * fetchDataFromExcel
      * ------------------
