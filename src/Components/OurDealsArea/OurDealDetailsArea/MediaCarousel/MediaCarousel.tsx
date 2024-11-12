@@ -18,7 +18,7 @@ import { Fragment, useState } from "react";
 import { MediaLinkModel } from "../../../../Models/OurDealModel";
 import ReactPlayer from "react-player";
 import { LoadingBox } from "../../../SharedArea/LoadingBox/LoadingBox";
-import CustomArrow from "../../../AboutUsArea/CustomArrows/CustomArrows";
+import CustomArrow from "../../../SharedArea/ButtonsArea/CustomArrows/CustomArrows";
 
 type MediaCarouselProps = {
     destination: string;                  // Name of the media destination for alt text

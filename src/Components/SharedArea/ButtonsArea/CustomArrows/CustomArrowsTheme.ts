@@ -4,13 +4,12 @@ class CustomArrowsTheme {
         position: "absolute",
         top: "50%",
         [position]: 0,
-        margin: "6px",
         transform: "translateY(-50%)",
-        backgroundColor: "rgba(255, 255, 255, 0.3)",
-        "&:hover .MuiSvgIcon-root": { color: "rgba(250,250,250, 0.7)" },
+        backgroundColor: "transparent",
+        "&:hover .MuiSvgIcon-root": { color: "rgba(200,200,200)" },
     });
 
-    public static iconColor = { color: "rgba(50, 50, 50, 0.7)" };
+    public static iconColor = { color: "rgba(150,150,150)" };
 
 };
 

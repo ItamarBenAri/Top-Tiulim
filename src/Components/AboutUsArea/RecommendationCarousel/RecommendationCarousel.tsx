@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { recommendationsService } from "../../../Services/RecommendationsService";
 import RecommendationModel from "../../../Models/RecommendationModel";
 import RecommendationCarouselTheme from "./RecommendationCarouselTheme";
-import CustomArrow from "../CustomArrows/CustomArrows";
+import CustomArrow from "../../SharedArea/ButtonsArea/CustomArrows/CustomArrows";
 import { LoadingBox } from "../../SharedArea/LoadingBox/LoadingBox";
 
 export function RecommendationsCarousel(): JSX.Element {
