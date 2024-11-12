@@ -20,7 +20,7 @@ class HeaderTheme {
     public static whatsappBtn = {
         backgroundColor: "#25D366",       // WhatsApp green background for brand consistency
         flex: "1",                        // Allows button to expand flexibly within its container
-        textWrap: "nowrap"                // Prevents text from wrapping, keeping button content inline
+        textWrap: "nowrap",               // Prevents text from wrapping, keeping button content inline
     };
 }
 

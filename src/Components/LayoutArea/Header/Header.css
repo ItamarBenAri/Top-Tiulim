@@ -141,22 +141,22 @@
 }
 
 /* Button Styling */
-.Header .call-button-large,
-.Header .call-button-small {
+.Header .whatsapp-button-large,
+.Header .whatsapp-button-small {
     margin-left: 1rem;
     margin-right: 1rem;
 }
 
 /* Display small call button only on smaller screens */
-.Header .call-button-small {
+.Header .whatsapp-button-small {
     display: none;
 }
 
 @media (max-width: 1350px) {
-    .Header .call-button-small {
+    .Header .whatsapp-button-small {
         display: block;                         /* Shows small button on smaller screens */
     }
-    .Header .call-button-large {
+    .Header .whatsapp-button-large {
         display: none;                          /* Hides large button on smaller screens */
     }
 }

@@ -16,12 +16,14 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { Facebook, Instagram, YouTube } from "@mui/icons-material";
-import { Box, Tooltip } from "@mui/material";
+import { Box, Tooltip, useMediaQuery } from "@mui/material";
 import { TiktokIcon } from "../../SharedArea/TiktokIcon/TiktokIcon";
 import { Link as RouterLink } from "react-router-dom";
 import FooterTheme from "./FooterTheme";
 
 export function Footer(): JSX.Element {
+
+    const matches = useMediaQuery("(min-width: 450px)");
 
     // Internal navigation links for the website, including route paths and descriptive text
     const internalLinks = [
@@ -56,7 +58,7 @@ export function Footer(): JSX.Element {
                 sx={FooterTheme.box}   // Applies custom footer theme styling
             >
                 <Container maxWidth="lg">
-                    <Grid container spacing={5}>
+                    <Grid container spacing={2}>
                         
                         {/* Internal Links Section */}
                         <Grid item xs={12} md={4}>
@@ -105,7 +107,7 @@ export function Footer(): JSX.Element {
                                     variant="body2"
                                     color="text.secondary"
                                 >
-                                    <Tooltip placement="left" title={contact.tooltip}>
+                                    <Tooltip placement={matches ? "left" :"top"} title={contact.tooltip}>
                                         <a
                                             className="contact-info-link"
                                             href={contact.href}

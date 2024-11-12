@@ -18,23 +18,22 @@
  .ScrollToTopBtn {
     position: fixed;                            /* Fixes the button position on the screen */
     bottom: 100px;                              /* Positions the button 100px from the bottom */
-    right: 30px;                                /* Positions the button 30px from the right edge */
+    right: 28px;                                /* Positions the button 30px from the right edge */
     cursor: pointer;                            /* Changes cursor to pointer on hover for interactivity */
     z-index: 1000;                              /* Ensures the button appears above other elements */
-    transition: opacity 0.5s ease-in-out;       /* Smooth opacity transition */
+    transition: opacity 0.3s ease-in-out, visibility 0.5s ease-in-out; /* Smooth transition for both opacity and visibility */
     opacity: 1;                                 /* Default opacity for visible state */
-    animation-name: fadeInOpacity;              /* Apply fade-in animation */
-    animation-iteration-count: 1;               /* Play animation once per visibility change */
-    animation-timing-function: ease-in;         /* Smoothly ease-in the fade effect */
-    animation-duration: 0.2s;                   /* Duration for the fade-in effect */
+    visibility: visible;                        /* Default visibility for visible state */
 }
 
 .ScrollToTopBtn.hidden {
-    display: none;                              /* Hides the button when it's in the 'hidden' state */
+    opacity: 0;                                 /* Hides the button by making it fully transparent */
+    visibility: hidden;                         /* Keeps the element in the layout but makes it invisible */
 }
 
 .ScrollToTopBtn.visible {
-    display: block;                             /* Ensures the button is visible in the 'visible' state */
+    opacity: 1;                                 /* Makes the button fully visible */
+    visibility: visible;                        /* Ensures the button is visible */
 }
 
 /* Keyframes for fade-in effect */

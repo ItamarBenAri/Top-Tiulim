@@ -18,13 +18,12 @@ import "./OurDealsList.css";
 import { OurDealCard } from "../OurDealCard/OurDealCard";
 import { OurDealPromoCard } from "../OurDealPromoCard/OurDealPromoCard";
 import { ourDealsService } from "../../../Services/OurDealsService";
-import { Box, CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/AppState";
 import useTitle from "../../../Utils/UseTitle";
 import { OurDealModel } from "../../../Models/OurDealModel";
 import { appService } from "../../../Services/AppService";
-import AppTheme from "../../../Theme/AppTheme";
+import { LoadingBox } from "../../SharedArea/LoadingBox/LoadingBox";
 
 export function OurDealsList(): JSX.Element {
     const globalStateDeals = useSelector<AppState, OurDealModel[]>(appState => appState.ourDeals);
@@ -87,9 +86,7 @@ export function OurDealsList(): JSX.Element {
             
             {/* Loading State Display */}
             {isLoading ? (
-                <Box sx={AppTheme.loadingBox}>
-                    <CircularProgress />
-                </Box>
+                <LoadingBox />
             ) : (
                 // Render each deal as a card once loading is complete
                 deals.map((d, i) => (

@@ -19,7 +19,7 @@ class FooterTheme {
      */
     public static box = {
         backgroundColor: "#EEEEEE",      // Light gray background for footer container
-        p: 6,                            // Padding around all sides of the footer content
+        py: 3,                           // Vertical padding (padding on the top and bottom) around the footer content
         paddingBottom: 0                 // Sets bottom padding to zero for precise alignment
     };
     

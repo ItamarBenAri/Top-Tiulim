@@ -7,13 +7,13 @@
  */
 
 import Carousel from "react-multi-carousel";
-import { Typography, Box, Divider, Paper, CircularProgress } from "@mui/material";
+import { Typography, Box, Divider, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { recommendationsService } from "../../../Services/RecommendationsService";
 import RecommendationModel from "../../../Models/RecommendationModel";
 import RecommendationCarouselTheme from "./RecommendationCarouselTheme";
-import AppTheme from "../../../Theme/AppTheme";
 import CustomArrow from "../CustomArrows/CustomArrows";
+import { LoadingBox } from "../../SharedArea/LoadingBox/LoadingBox";
 
 export function RecommendationsCarousel(): JSX.Element {
     // State to store fetched recommendations
@@ -84,9 +84,7 @@ export function RecommendationsCarousel(): JSX.Element {
                 </div>
             ) : (
                 // Loading Indicator displayed while data is being fetched
-                <Box sx={AppTheme.loadingBox}>
-                    <CircularProgress />
-                </Box>
+                <LoadingBox />
             )}
         </Box>
     );

@@ -18,7 +18,7 @@
 import Header from "../Header/Header";
 import Routing from "../Routing/Routing";
 import "./Layout.css";
-import { FloatingButton } from "../../SharedArea/FloatingButton/FloatingButton";
+import { FloatingButton } from "../../SharedArea/ButtonsArea/FloatingButton/FloatingButton";
 import { Toastify } from "../../SharedArea/Toastify/Toastify";
 import { Footer } from "../Footer/Footer";
 import { ScrollToTopBtn } from "../../SharedArea/ScrollToTopArea/ScrollToTopBtn/ScrollToTopBtn";

@@ -7,13 +7,14 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Container, Typography, Avatar, Box, Divider, CircularProgress } from "@mui/material";
+import { Container, Typography, Avatar, Box, Divider } from "@mui/material";
 import "./AboutUs.css";
 import { RecommendationsCarousel } from "../RecommendationCarousel/RecommendationCarousel";
 import { appService } from "../../../Services/AppService";
 import useTitle from "../../../Utils/UseTitle";
 import AboutUsTheme from "./AboutUsTheme";
 import AppTheme from "../../../Theme/AppTheme";
+import { LoadingBox } from "../../SharedArea/LoadingBox/LoadingBox";
 
 export function AboutUs(): JSX.Element {
     // URL of the profile image to be displayed
@@ -83,9 +84,7 @@ export function AboutUs(): JSX.Element {
                     </>
                 ) : (
                     // Loading Indicator (Displays until page is fully loaded)
-                    <Box sx={AppTheme.loadingBox}>
-                        <CircularProgress />
-                    </Box>
+                    <LoadingBox />
                 )
             }
         </Container>

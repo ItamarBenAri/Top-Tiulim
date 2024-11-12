@@ -10,4 +10,5 @@
     display: flex;                            /* Applies flex layout for horizontal alignment */
     justify-content: center;                  /* Centers the card content within the container */
     position: static;                         /* Sets the card's position to static, aligning it naturally */
+    box-sizing: border-box;
 }

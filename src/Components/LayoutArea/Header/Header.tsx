@@ -14,28 +14,10 @@
 import { useState, useEffect } from "react";
 import "./Header.css";
 import { NavLink } from 'react-router-dom';
-import { Button, Divider } from "@mui/material";
+import { Divider } from "@mui/material";
 import logo from "../../../Assets/Images/logo.png";
 import { pages } from "../../../Constants/WebsitePages";
-import { WhatsApp } from "@mui/icons-material";
-import HeaderTheme from "./HeaderTheme";
-
-// WhatsAppButton Component
-// -------------------------
-// Renders a button that links to a WhatsApp chat with preset text.
-// - Opens WhatsApp in a new tab to initiate a conversation.
-// - Uses custom styling from HeaderTheme.
-const WhatsAppButton = () => (
-    <Button
-        href="https://wa.me/506233228?text=היי!+אני+מעוניינ/ת+בטיול."
-        target="_blank"
-        variant="contained"
-        endIcon={<WhatsApp />}
-        sx={HeaderTheme.whatsappBtn}
-    >
-        שלח/י הודעת וואצפ &nbsp;
-    </Button>
-);
+import { WhatsAppButton } from "../../SharedArea/ButtonsArea/WhatsAppButton/WhatsAppButton";
 
 function Header(): JSX.Element {
 
@@ -92,7 +74,7 @@ function Header(): JSX.Element {
                             alt="לוגו של האתר" 
                         />
                     </NavLink>
-                    <div className="call-button-small">
+                    <div className="whatsapp-button-small">
                         <WhatsAppButton />
                     </div>
                 </div>
@@ -118,7 +100,7 @@ function Header(): JSX.Element {
                 </div>
 
                 {/* Large call button (visible on larger screens) */}
-                <div className="call-button-large">
+                <div className="whatsapp-button-large">
                     <WhatsAppButton />
                 </div>
             </nav>

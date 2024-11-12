@@ -13,15 +13,15 @@
  */
 
 import "./Gallery.css";
-import { ImageList, ImageListItem, Typography, Container, Box, CircularProgress } from "@mui/material";
+import { ImageList, ImageListItem, Typography, Container, Box } from "@mui/material";
 import { useEffect, useState } from "react";
 import Zoom from 'react-medium-image-zoom';
 import { galleryService } from "../../Services/GalleryService";
 import { appService } from "../../Services/AppService";
 import GalleryItemModel from "../../Models/GalleryItemModel";
 import useTitle from "../../Utils/UseTitle";
-import AppTheme from "../../Theme/AppTheme";
 import GalleryTheme from "./GalleryTheme";
+import { LoadingBox } from "../SharedArea/LoadingBox/LoadingBox";
 
 export function Gallery(): JSX.Element {
     // State to store gallery items and track image loading status
@@ -108,17 +108,13 @@ export function Gallery(): JSX.Element {
                                     </ImageListItem>
                                 ))
                                 :
-                                <Box sx={AppTheme.loadingBox}>
-                                    <CircularProgress />
-                                </Box>
+                                <LoadingBox />
                             }
                         </ImageList>
                     </Box>
                 ))
                 :
-                <Box sx={AppTheme.loadingBox}>
-                    <CircularProgress />
-                </Box>
+                <LoadingBox />
                 }
             </Container>
         </div>

@@ -17,8 +17,8 @@ import { Fragment, useEffect, useState } from "react";
 import { AppState } from "../../../../Redux/AppState";
 import { useSelector } from "react-redux";
 import { ourDealsService } from "../../../../Services/OurDealsService";
-import { Button, Box, Stack, Divider, Skeleton, Grid, useMediaQuery } from "@mui/material";
-import { CalendarMonthRounded, Call, LocationOn, WhatsApp } from "@mui/icons-material";
+import { Box, Stack, Divider, Skeleton, Grid, useMediaQuery } from "@mui/material";
+import { CalendarMonthRounded, LocationOn } from "@mui/icons-material";
 import { Typography } from "@mui/joy";
 import { OurDealDetailsAccordion } from "../OurDealDetailsAccordion/OurDealDetailsAccordion";
 import { appService } from "../../../../Services/AppService";
@@ -27,6 +27,8 @@ import useTitle from "../../../../Utils/UseTitle";
 import { OurDealModel } from "../../../../Models/OurDealModel";
 import { MediaCarousel } from "../MediaCarousel/MediaCarousel";
 import AppTheme from "../../../../Theme/AppTheme";
+import { CallButton } from "../../../SharedArea/ButtonsArea/CallButton/CallButton";
+import { WhatsAppButton } from "../../../SharedArea/ButtonsArea/WhatsAppButton/WhatsAppButton";
 
 export function OurDealDetails(): JSX.Element {
     const params = useParams();
@@ -90,7 +92,7 @@ export function OurDealDetails(): JSX.Element {
     return (
         <Box className="OurDealDetails">
             {isPageLoaded ? (
-                <>
+                <Fragment>
                     {/* Media Carousel Displaying Deal Images */}
                     <MediaCarousel
                         destination={globalStateDeal.destination}
@@ -147,26 +149,11 @@ export function OurDealDetails(): JSX.Element {
 
                         {/* Contact Buttons Section */}
                         <Grid item sx={AppTheme.contactBtns}>
-                            <Button
-                                href="tel:0506233228"
-                                variant="contained"
-                                endIcon={<Call />}
-                                sx={AppTheme.callBtn}
-                            >
-                                התקשר/י עכשיו &nbsp;
-                            </Button>
-                            <Button
-                                href={`https://wa.me/506233228?text=היי!+אשמח+לפרטים+לגבי+הטיול+ל${globalStateDeal.destination}.`}
-                                target="_blank"
-                                variant="contained"
-                                endIcon={<WhatsApp />}
-                                sx={AppTheme.whatsappBtn}
-                            >
-                                שלח/י הודעת וואצפ &nbsp;
-                            </Button>
+                            <CallButton />
+                            <WhatsAppButton destination={globalStateDeal.destination} />
                         </Grid>
                     </Box>
-                </>
+                </Fragment>
             ) : (
                 // Skeleton Loaders for Content Placeholder
                 <Fragment>

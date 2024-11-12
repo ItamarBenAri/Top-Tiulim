@@ -14,10 +14,11 @@
 
 import "./MediaCarousel.css";
 import Carousel from 'react-multi-carousel';
-import { useState } from "react";
-import { useMediaQuery } from "@mui/material";
+import { Fragment, useState } from "react";
 import { MediaLinkModel } from "../../../../Models/OurDealModel";
 import ReactPlayer from "react-player";
+import { LoadingBox } from "../../../SharedArea/LoadingBox/LoadingBox";
+import CustomArrow from "../../../AboutUsArea/CustomArrows/CustomArrows";
 
 type MediaCarouselProps = {
     destination: string;                  // Name of the media destination for alt text
@@ -28,9 +29,7 @@ export function MediaCarousel(props: MediaCarouselProps): JSX.Element {
     const [currentMediaIndex, setCurrentMediaIndex] = useState<number>(0);    // Index of the currently displayed media
     const [playingVideo, setPlayingVideo] = useState<boolean>(false);         // Indicates if a video is currently playing
     const [videoErrors, setVideoErrors] = useState<number[]>([]);             // Array storing indices of videos with loading errors
-
-    // Checks for screen width to conditionally render arrows in carousel
-    const matches = useMediaQuery('(min-width:600px)');
+    const [videoLoading, setVideoLoading] = useState<number[]>([]);           // Array storing indices of videos that are loading
 
     // Carousel responsive settings for various screen sizes
     const responsive = {
@@ -65,6 +64,18 @@ export function MediaCarousel(props: MediaCarouselProps): JSX.Element {
         setVideoErrors(prevErrors => [...prevErrors, index]);
     };
 
+    /**
+     * handleVideoReady
+     * ------------------
+     * Handles the completion of video loading by removing the current media index from the list of loading videos.
+     * This function is triggered when a video has successfully loaded and is ready to play.
+     * 
+     * @param index - Index of the media item that has finished loading.
+     */
+    const handleVideoReady = (index: number) => {
+        setVideoLoading(prevLoading => prevLoading.filter(i => i !== index));
+    };
+
     return (
         <div
             className="MediaCarousel"
@@ -75,10 +86,13 @@ export function MediaCarousel(props: MediaCarouselProps): JSX.Element {
             <Carousel
                 responsive={responsive}
                 autoPlay
-                arrows={matches}                          // Show arrows on larger screens only
+                arrows
+                rtl
+                customLeftArrow={<CustomArrow direction="left" />}
+                customRightArrow={<CustomArrow direction="right" />}
                 autoPlaySpeed={10000}                      // Set autoplay interval to 10 seconds
                 keyBoardControl
-                transitionDuration={500}                   // Smooth transition duration between slides
+                transitionDuration={300}                   // Smooth transition duration between slides
                 showDots                                   // Show pagination dots
                 afterChange={() => setPlayingVideo(false)} // Stop video playback when slide changes
                 beforeChange={nextSlide => setCurrentMediaIndex(nextSlide)} // Update current index before slide change
@@ -98,17 +112,23 @@ export function MediaCarousel(props: MediaCarouselProps): JSX.Element {
                                     אירעה שגיאה בטעינת הוידאו!
                                 </p>
                             ) : (
-                                <ReactPlayer
-                                    controls
-                                    onError={() => handleVideoError(i)}   // Error handler for video loading issues
-                                    playing={playingVideo && i === currentMediaIndex} // Play only the current video
-                                    onStart={() => setPlayingVideo(true)} // Set playing state when video starts
-                                    onPause={() => setPlayingVideo(false)} // Reset playing state when paused
-                                    onPlay={() => setPlayingVideo(true)}   // Set playing state on play event
-                                    height={"100%"}
-                                    width={"100%"}
-                                    url={item.url}
-                                />
+                                <Fragment>
+                                    {videoLoading.includes(i) && (
+                                        <LoadingBox />
+                                    )}
+                                    <ReactPlayer
+                                        controls
+                                        onError={() => handleVideoError(i)}   // Error handler for video loading issues
+                                        playing={playingVideo && i === currentMediaIndex} // Play only the current video
+                                        onStart={() => setPlayingVideo(true)} // Set playing state when video starts
+                                        onPause={() => setPlayingVideo(false)} // Reset playing state when paused
+                                        onPlay={() => setPlayingVideo(true)}   // Set playing state on play event
+                                        onReady={() => handleVideoReady(i)}    // Remove loading state when video is ready
+                                        height={"100%"}
+                                        width={"100%"}
+                                        url={item.url}
+                                    />
+                                </Fragment>
                             )
                         )}
                     </div>
