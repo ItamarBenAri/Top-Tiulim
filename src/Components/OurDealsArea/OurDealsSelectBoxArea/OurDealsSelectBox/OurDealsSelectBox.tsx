@@ -1,9 +1,11 @@
 /**
  * Component: OurDealsSelectBox
- * 
- * This component provides a multi-select dropdown for filtering deals based on selected countries.
- * It uses Material UI components styled with a custom theme and cache provider for RTL support.
- * The selected countries are updated locally, in the Redux store, and via the provided callback prop.
+ *
+ * This component renders a multi-select dropdown for filtering deals based on selected countries.
+ * It leverages Material-UI components and is styled with a custom theme and an RTL cache provider.
+ * The selected countries are tracked both locally and globally, updating the Redux store and 
+ * notifying the parent component via a callback. Additionally, a toast notification appears when
+ * the selected countries change to inform the user of updates.
  */
 
 import "./OurDealsSelectBox.css";
@@ -22,6 +24,7 @@ import { ourDealsService } from "../../../../Services/OurDealsService";
 import { useSelector } from "react-redux";
 import { AppState } from "../../../../Redux/AppState";
 import OurDealsSelectBoxTheme from "./OurDealsSelectBoxTheme";
+import { Flip, toast } from "react-toastify";
 
 // Define component props for OurDealsSelectBox
 type OurDealsSelectBoxProps = {
@@ -32,57 +35,114 @@ type OurDealsSelectBoxProps = {
 export function OurDealsSelectBox(props: OurDealsSelectBoxProps): JSX.Element {
     // Retrieve global state for currently selected countries
     const globalSelectedCountries = useSelector<AppState, string[]>(appState => appState.selectedCountries);
-    
+
     // Local state to manage selected countries within the component
     const [selectedCountries, setSelectedCountries] = useState<string[]>(globalSelectedCountries);
+    const [open, setOpen] = useState(false); // Tracks dropdown open state
 
     /**
+     * handleChange
+     * 
      * Updates selected countries based on user input.
-     * This function updates local state, notifies parent via onChange, and updates global state.
+     * Synchronizes local component state, invokes the parent onChange callback,
+     * and updates the global Redux store with the selected countries.
      *
      * @param event - The change event from the Select component
      */
     const handleChange = (event: SelectChangeEvent<string[]>) => {
         const { target: { value } } = event;
-        
-        // Convert the selected values into an array of strings if needed
+
+        // Convert selected values into an array of strings if needed
         const selected = typeof value === 'string' ? value.split(',') : value;
-        
-        // Update component's local state with selected countries
+
+        // Update local state
         setSelectedCountries(selected);
-        
-        // Invoke the parent's callback with selected countries
+
+        // Trigger parent callback with updated selection
         props.onChange(selected);
-        
-        // Update the Redux store with new selected countries
+
+        // Update global Redux state with new selection
         ourDealsService.updateSelectedCountries(selected);
+        
+        notifyDealsUpdate(selected);
+    };
+
+    /**
+     * handleDelete
+     * 
+     * Handles removal of a selected country from the selection list. 
+     * Removes the country from local state, invokes the parent's onChange callback,
+     * and updates the Redux store to reflect the current selection.
+    *
+    * @param countryToDelete - The country to remove from the selection
+    */
+    const handleDelete = (countryToDelete: string) => {
+        const updatedSelected = selectedCountries.filter(country => country !== countryToDelete);
+
+        setSelectedCountries(updatedSelected);
+        props.onChange(updatedSelected);
+        ourDealsService.updateSelectedCountries(updatedSelected);
+        notifyDealsUpdate(updatedSelected);
+    };
+
+    /**
+     * toggleOpen
+     *
+     * Toggles the open/closed state of the Select dropdown.
+     */
+    const toggleOpen = () => setOpen(!open);
+
+    /**
+     * notifyDealsUpdate
+     * 
+     * Displays a toast notification to inform users of deal updates based on selected countries.
+     *
+     * @param selectedCountries - The array of currently selected countries
+     */
+    const notifyDealsUpdate = (selectedCountries: string[]) =>{
+        const message = selectedCountries.length > 0
+            ? "הדילים עודכנו לפי הסינון שלך"
+            : "מציג את כל הדילים";
+
+        toast.info(message, {
+            autoClose: 3000,
+            transition: Flip,
+        });
     };
 
     return (
         <div className="OurDealsSelectBox">
-            {/* Configure cache provider and theme provider for RTL styling and custom theme */}
+            {/* CacheProvider and ThemeProvider for RTL support and custom theme styling */}
             <CacheProvider value={AppTheme.cacheRtl}>
                 <ThemeProvider theme={AppTheme.theme}>
                     <FormControl sx={OurDealsSelectBoxTheme.formControl}>
                         {/* Label for multi-select input */}
                         <InputLabel>סינון לפי יעדים</InputLabel>
-                        
-                        {/* Multi-select dropdown to choose countries */}
+
+                        {/* Multi-select dropdown for selecting countries */}
                         <Select
                             multiple
+                            open={open}
+                            onClick={toggleOpen}
+                            onClose={() => setOpen(false)}
                             value={selectedCountries}
                             onChange={handleChange}
                             input={<OutlinedInput label="סינון לפי יעדים" />}
                             renderValue={(selected) => (
                                 <Box sx={OurDealsSelectBoxTheme.selectBox}>
                                     {selected.map((value) => (
-                                        <Chip key={value} label={value} />
+                                        <Chip
+                                            key={value}
+                                            label={value}
+                                            onDelete={() => handleDelete(value)}
+                                            sx={{ zIndex: 2000 }} // Ensures delete icon on chip is accessible above dropdown
+                                        />
                                     ))}
                                 </Box>
                             )}
                             MenuProps={OurDealsSelectBoxTheme.menuProps}
                         >
-                            {/* Map through countries prop to create a menu item for each country */}
+                            {/* Generate menu items from provided country list */}
                             {props.countries.map((country) => (
                                 <MenuItem
                                     key={country}
