@@ -30,8 +30,9 @@ import RecommendationModel from "../Models/RecommendationModel";
  * - `galleryItems`: Array of `GalleryItemModel` objects, defining media items to be displayed in a gallery.
  */
 export type AppState = {
-    ourDeals: OurDealModel[];          // Stores all promotional deals available in the app
-    itineraries: ItineraryModel[];      // Contains detailed itineraries for trips or travel packages
+    ourDeals: OurDealModel[];               // Stores all promotional deals available in the app
+    itineraries: ItineraryModel[];          // Contains detailed itineraries for trips or travel packages
     recommendations: RecommendationModel[]; // User reviews or recommendations for display
-    galleryItems: GalleryItemModel[];   // Media items for gallery display
+    galleryItems: GalleryItemModel[];       // Media items for gallery display
+    selectedCountries: string[];            // Selected countries for selected box
 };

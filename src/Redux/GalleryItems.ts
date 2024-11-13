@@ -25,8 +25,7 @@ import GalleryItemModel from "../Models/GalleryItemModel";
  * - An array of `GalleryItemModel` items, effectively replacing the current state with the payload.
  */
 function initAll(currentState: GalleryItemModel[], action: PayloadAction<GalleryItemModel[]>): GalleryItemModel[] {
-    const allRecommendations = action.payload;
-    return allRecommendations;
+    return action.payload;
 }
 
 /**

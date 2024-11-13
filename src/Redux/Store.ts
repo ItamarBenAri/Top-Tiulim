@@ -17,6 +17,7 @@ import { ourDealsReducersContainer } from "./OurDealsSlice";
 import { itinerariesReducersContainer } from "./ItinerariesSlice";
 import { recommendationsReducersContainer } from "./RecommendationsSlice";
 import { galleryItemsReducersContainer } from "./GalleryItems";
+import { selectedCountriesReducersContainer } from "./SelectedCountries";
 
 /**
  * appStore
@@ -35,9 +36,10 @@ import { galleryItemsReducersContainer } from "./GalleryItems";
  */
 export const appStore = configureStore<AppState>({
     reducer: {
-        ourDeals: ourDealsReducersContainer,                 // Reducer for managing deals data
-        itineraries: itinerariesReducersContainer,           // Reducer for handling itinerary data
-        recommendations: recommendationsReducersContainer,   // Reducer for managing recommendations
-        galleryItems: galleryItemsReducersContainer          // Reducer for handling gallery items
+        ourDeals: ourDealsReducersContainer,                    // Reducer for managing deals data
+        itineraries: itinerariesReducersContainer,              // Reducer for handling itinerary data
+        recommendations: recommendationsReducersContainer,      // Reducer for managing recommendations
+        galleryItems: galleryItemsReducersContainer,            // Reducer for handling gallery items
+        selectedCountries: selectedCountriesReducersContainer   // Reducer for handling selected countries
     }
 });

@@ -20,8 +20,6 @@ import ImageSlideshowTheme from "./ImageSlideshowTheme";
 type ImageSlideshowProps = {
     destination: string;           // Name of the destination, used in image alt text for accessibility
     images: MediaLinkModel[];      // Array of image objects to be displayed in the slideshow
-    imagesLoaded: boolean;         // Flag indicating if all images are fully loaded
-    onImageLoad: () => void;       // Callback function to increment loaded image count on image load
 };
 
 export function ImageSlideshow(props: ImageSlideshowProps) {
@@ -50,10 +48,8 @@ export function ImageSlideshow(props: ImageSlideshowProps) {
                     sx={ImageSlideshowTheme.getImageSlideshowStyles(index, currentImageIndex)}  // Conditional styling based on current image
                 >
                     <img
-                        style={{ opacity: props.imagesLoaded ? 1 : 0 }}               // Controls opacity based on loading state
                         src={item.url}                                                // Image URL
                         alt={`${props.destination} ${index}`}                         // Alt text for accessibility
-                        onLoad={props.onImageLoad}                                    // Trigger image load callback
                     />
                 </CardCover>
             ))}

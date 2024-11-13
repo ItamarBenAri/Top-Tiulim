@@ -5,6 +5,7 @@ export class MediaLinkModel {
 
 export class OurDealModel {
     public id: number;
+    public country: string;
     public destination: string;
     public title: string;
     public description: string;

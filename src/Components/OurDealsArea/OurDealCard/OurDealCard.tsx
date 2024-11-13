@@ -1,13 +1,10 @@
 /**
- * OurDealCard Component
- * ----------------------
- * Renders a card component displaying a travel deal with image slideshow, title, destination,
- * date, price, and a "last spots" ribbon if applicable. Handles card click navigation, image
- * loading states, and skeleton loading placeholders.
+ * Component: OurDealCard
  * 
- * Imports:
- * - Material UI components for styling and layout.
- * - Custom components and themes for specific design needs (e.g., ImageSlideshow, OurDealCardTheme).
+ * This component represents an individual deal card within the application, displaying details such as the title,
+ * destination, date, and images of the deal. The card includes a skeleton loader while images are loading,
+ * and dynamically displays a ribbon for last available spots and a price tag overlay. 
+ * Clicking on the card navigates to the detailed view of the deal.
  */
 
 import './OurDealCard.css';
@@ -23,49 +20,55 @@ import { OurDealModel } from "../../../Models/OurDealModel";
 import { Skeleton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OurDealCardTheme from './OurDealCardTheme';
+import { Fragment, useEffect, useState } from 'react';
+import { appService } from '../../../Services/AppService';
 
 type OurDealCardProps = {
-    ourDeal: OurDealModel;              // The data model containing deal information
-    imagesLoaded: boolean;              // Boolean indicating if images have finished loading
-    onImageLoad: () => void;            // Callback function for when an image has loaded
+    ourDeal: OurDealModel; // Data model containing all details for a specific deal
 };
 
 export function OurDealCard(props: OurDealCardProps): JSX.Element {
-    const navigate = useNavigate();
+    const navigate = useNavigate();  // Enables navigation to deal detail page
+    const [cardLoaded, setCardLoaded] = useState<boolean>(false); // Tracks loading state of images
+    const imageLinks = props.ourDeal.mediaLinks
+        .filter(media => media.type === "image")  // Filters only image-type media links
+        .map(media => media.url);
+
+    // Effect hook to preload images and update the card's loaded state
+    useEffect(() => {
+        appService.loadImages(imageLinks)
+            .then(() => setCardLoaded(true));  // Sets card as loaded once all images are loaded
+    }, [imageLinks]);
 
     /**
-     * handleCardClicked
-     * ------------------
-     * Handles navigation when the card is clicked. Navigates to the specific deal’s detail page
-     * if images have loaded. This check prevents navigating before image loading is complete.
+     * Handler for card click event.
+     * Navigates to the detailed view of the deal if images have fully loaded.
      */
     const handleCardClicked = () => {
-        if (props.imagesLoaded) navigate(`${props.ourDeal.id}`);
+        if (cardLoaded) navigate(`${props.ourDeal.id}`);
     };
 
     return (
         <div className="OurDealCard">
-            <Card 
-                sx={OurDealCardTheme.card}       // Applies theme styling to the main card
-                onClick={handleCardClicked}       // Adds click event for navigation
+            <Card
+                sx={OurDealCardTheme.card}  // Applies styling for the card container
+                onClick={handleCardClicked} // Attach click event handler for navigation
             >
 
-                {/* Image Slideshow */}
-                <ImageSlideshow
-                    images={props.ourDeal.mediaLinks.filter(media => media.type === "image")}
-                    destination={props.ourDeal.destination}
-                    onImageLoad={props.onImageLoad}
-                    imagesLoaded={props.imagesLoaded}
-                />
-
-                {/* Deal Content (Shown After Images Loaded) */}
-                {props.imagesLoaded ? (
-                    <>
-                        {/* Ribbon - Shows if last spots are available */}
+                {/* Conditional Rendering: Shows deal content if images are loaded */}
+                {cardLoaded ? (
+                    <Fragment>
+                        {/* Image Slideshow Component */}
+                        <ImageSlideshow
+                            images={props.ourDeal.mediaLinks.filter(media => media.type === "image")}
+                            destination={props.ourDeal.destination}
+                        />
+                        
+                        {/* "Last Spots" Ribbon - Shown if the deal has limited spots */}
                         {props.ourDeal.lastSpots && (
                             <Box className="ribbon">
-                                <Typography 
-                                    level="body-sm" 
+                                <Typography
+                                    level="body-sm"
                                     textColor="#fff"
                                 >
                                     מקומות אחרונים
@@ -73,23 +76,23 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
                             </Box>
                         )}
 
-                        {/* Price Tag */}
+                        {/* Price Tag Overlay */}
                         <Box className="priceTag">
                             <Typography level="title-sm">
                                 {props.ourDeal.price} &#8362;
                             </Typography>
                         </Box>
 
-                        {/* Card Overlay for Details */}
+                        {/* Card Content Overlay: Title, Location, and Date */}
                         <CardCover sx={OurDealCardTheme.cardCover} />
                         <CardContent sx={OurDealCardTheme.cardContent}>
-
+                            
                             {/* Deal Title */}
                             <Typography level="title-lg" textColor="#fff">
                                 {props.ourDeal.title}
                             </Typography>
 
-                            {/* Location and Date Info */}
+                            {/* Location and Date Information */}
                             <Box sx={OurDealCardTheme.cardContentBox}>
                                 <Typography
                                     startDecorator={<LocationOnRoundedIcon />}
@@ -105,9 +108,9 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
                                 </Typography>
                             </Box>
                         </CardContent>
-                    </>
+                    </Fragment>
                 ) : (
-                    // Skeleton Loader (Shown Until Images Load)
+                    // Skeleton Loader: Shows while images are loading
                     <CardCover>
                         <Skeleton
                             variant="rounded"

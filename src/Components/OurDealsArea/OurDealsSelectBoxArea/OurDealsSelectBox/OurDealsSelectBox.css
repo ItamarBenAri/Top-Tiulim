@@ -1,0 +1,14 @@
+/**
+ * CSS Styling for OurDealsSelectBox Component
+ *
+ * This class defines the styling for the OurDealsSelectBox component,
+ * providing layout, spacing, and overall box sizing to ensure responsive
+ * and consistent appearance across different screen sizes and containers.
+ */
+
+ .OurDealsSelectBox {
+    width: 100%;                   /* Ensures the select box occupies the full width of its container */
+    box-sizing: border-box;         /* Includes padding and border within the total width and height */
+    display: flex;                  /* Uses flex layout to align and distribute children elements */
+    margin-right: 20px;             /* Adds right margin for spacing, maintaining layout consistency */
+}

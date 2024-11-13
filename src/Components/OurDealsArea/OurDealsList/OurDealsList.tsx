@@ -1,19 +1,12 @@
 /**
- * OurDealsList Component
- * ------------------------
- * Displays a list of travel deals in a promotional layout, including a loading state
- * and a promotional banner card. Fetches deals from either global state or an external source,
- * then renders each deal as an individual card. Utilizes image loading tracking for better
- * user experience during loading periods.
+ * Component: OurDealsList
  * 
- * Imports:
- * - React and CSS for component structure and styling.
- * - Material UI components for layout and loading indicators.
- * - Redux for accessing global state.
- * - Services for data fetching and utility functions.
+ * This component renders a list of travel deals with options to filter by selected countries.
+ * The component displays a promotional card at the top, a filter select box for countries, 
+ * and a list of deal cards. It uses a loading indicator until data is fetched.
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./OurDealsList.css";
 import { OurDealCard } from "../OurDealCard/OurDealCard";
 import { OurDealPromoCard } from "../OurDealPromoCard/OurDealPromoCard";
@@ -22,81 +15,72 @@ import { useSelector } from "react-redux";
 import { AppState } from "../../../Redux/AppState";
 import useTitle from "../../../Utils/UseTitle";
 import { OurDealModel } from "../../../Models/OurDealModel";
-import { appService } from "../../../Services/AppService";
 import { LoadingBox } from "../../SharedArea/LoadingBox/LoadingBox";
+import { OurDealsSelectBox } from "../OurDealsSelectBoxArea/OurDealsSelectBox/OurDealsSelectBox";
 
 export function OurDealsList(): JSX.Element {
+    // Access global state for deals and selected countries
     const globalStateDeals = useSelector<AppState, OurDealModel[]>(appState => appState.ourDeals);
-    const [isLoading, setIsLoading] = useState<boolean>(true);    // Loading state
-    const [deals, setDeals] = useState<OurDealModel[]>([]);       // Local state for deal data
-    const [imagesLoaded, setMediaLoaded] = useState<number>(0);   // Tracks number of images loaded
-    const [totalImages, setTotalImages] = useState<number>(0);    // Total number of images to load
+    const globalSelectedCountries = useSelector<AppState, string[]>(appState => appState.selectedCountries);
     
-    // Sets page title with loading or content status
+    // Local state for deals, loading status, and currently selected countries
+    const [deals, setDeals] = useState<OurDealModel[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [selectedCountries, setSelectedCountries] = useState<string[]>(globalSelectedCountries); 
+
+    // Set document title, indicating loading status if applicable
     useTitle(`טופ טיולים | ${isLoading ? "טוען..." : "דילים חמים"}`);
 
     /**
-     * updateTotalImages
-     * -------------------
-     * Calculates the total number of images in the deals list and updates the `totalImages` state.
-     * Also, stops the loading state once image counting is complete.
-     * 
-     * @param deals - Array of OurDealModel objects representing the deals
-     */
-    const updateTotalImages = (deals: OurDealModel[]) => {
-        const total = appService.countImagesInDeals(deals);  // Counts images in deals
-        setTotalImages(total);                               // Updates totalImages state
-        setIsLoading(false);                                 // Sets loading state to false
-    };
-
-    /**
-     * useEffect: Fetch Deals
-     * -----------------------
-     * Retrieves deals from either global state (if available) or by calling an external service.
-     * Updates deal data and total images count once deals are loaded.
+     * Fetch deals from global state or from an external source if not already available.
+     * Updates loading state once data is retrieved.
      */
     useEffect(() => {
-        if (globalStateDeals.length) {                    // Uses global deals if available
+        if (globalStateDeals.length) {
             setDeals(globalStateDeals);
-            return updateTotalImages(globalStateDeals);   // Updates image count
+            setIsLoading(false);
+        } else {
+            ourDealsService.fetchDealsFromExcel()
+                .then(deals => {
+                    setIsLoading(false);
+                    setDeals(deals);
+                })
+                .catch(err => console.error(err)); // Log errors without disrupting component
         }
-
-        ourDealsService.fetchDealsFromExcel()             // Fetches deals if not in global state
-            .then(deals => {
-                setDeals(deals);
-                updateTotalImages(deals);
-            })
-            .catch(err => console.error(err));            // Logs error if fetching fails
     }, [globalStateDeals]);
 
     /**
-     * handleImageLoading
-     * --------------------
-     * Increments the loaded images count each time an image finishes loading,
-     * to track the completion of image loading.
+     * Filters deals based on selected countries.
+     * If no countries are selected, all deals are displayed.
      */
-    const handleImageLoading = () => {
-        setMediaLoaded(prev => prev + 1);                // Increment loaded images count
-    };
+    const filteredDeals = selectedCountries.length
+        ? deals.filter(deal => selectedCountries.includes(deal.country))
+        : deals;
 
     return (
         <div className="OurDealsList">
-            {/* Promo Card Display */}
+            {/* Promotional Card Displayed at the Top */}
             <OurDealPromoCard />
-            
-            {/* Loading State Display */}
+
+            {/* Show LoadingBox if data is still loading, otherwise render content */}
             {isLoading ? (
                 <LoadingBox />
             ) : (
-                // Render each deal as a card once loading is complete
-                deals.map((d, i) => (
-                    <OurDealCard
-                        key={i}
-                        ourDeal={d}
-                        onImageLoad={handleImageLoading}
-                        imagesLoaded={!isLoading && imagesLoaded === totalImages && totalImages > 0} // Ensures all images are loaded
+                <Fragment>
+                    {/* Country Filter Select Box */}
+                    <OurDealsSelectBox
+                        countries={Array.from(new Set(globalStateDeals.map(deal => deal.country)))} // Unique country list
+                        onChange={(selected) => setSelectedCountries(selected)} // Update selected countries
                     />
-                ))
+
+                    {/* Render filtered deal cards */}
+                    {filteredDeals.map((deal, index) => (
+                        <OurDealCard
+                            key={index}
+                            ourDeal={deal}
+                        />
+                    ))}
+                </Fragment>
             )}
         </div>
     );

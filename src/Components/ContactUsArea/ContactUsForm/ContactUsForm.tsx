@@ -24,7 +24,7 @@ import MessageModel from "../../../Models/MessageModel";
 import { emailService } from "../../../Services/EmailService";
 import { Recaptcha } from "../Recaptcha/Recaptcha";
 import { toast } from "react-toastify";
-import ContactUsFormTheme from "./ContactUsFormTheme";
+import AppTheme from "../../../Theme/AppTheme";
 
 export function ContactUsForm(): JSX.Element {
     // Initializes form methods and state for message-sending and reCAPTCHA validation
@@ -61,8 +61,8 @@ export function ContactUsForm(): JSX.Element {
     return (
         <div className="ContactUsForm">
             {/* Enables right-to-left styling and custom theming for the form */}
-            <CacheProvider value={ContactUsFormTheme.cacheRtl}>
-                <ThemeProvider theme={ContactUsFormTheme.theme}>
+            <CacheProvider value={AppTheme.cacheRtl}>
+                <ThemeProvider theme={AppTheme.theme}>
                     <FormProvider {...methods}>
                         <Box
                             component="form"
@@ -76,7 +76,7 @@ export function ContactUsForm(): JSX.Element {
                                 register={register}             // Form register method
                                 label="שם מלא"                  // Input label in Hebrew for full name
                             />
-                            
+
                             {/* Phone Number Input Field */}
                             <ContactUsTextField
                                 registerTo="phoneNumber"        // Field name for phone number
@@ -84,7 +84,7 @@ export function ContactUsForm(): JSX.Element {
                                 label="מספר טלפון"             // Input label in Hebrew for phone number
                                 type="tel"                      // Sets input type to telephone number
                             />
-                            
+
                             {/* Message Text Area */}
                             <ContactUsTextField
                                 registerTo="message"            // Field name for user message

@@ -23,25 +23,27 @@ import { Toastify } from "../../SharedArea/Toastify/Toastify";
 import { Footer } from "../Footer/Footer";
 import { ScrollToTopBtn } from "../../SharedArea/ScrollToTopArea/ScrollToTopBtn/ScrollToTopBtn";
 import { ScrollToTop } from "../../SharedArea/ScrollToTopArea/ScrollToTop/ScrollToTop";
+import { SelectedCountriesManager } from "../../OurDealsArea/OurDealsSelectBoxArea/SelectedCountriesManager/SelectedCountriesManager";
 
 function Layout(): JSX.Element {
     return (
         <div className="Layout">
-            
+
             {/* Header Section */}
             <header>
                 <Header /> {/* Main header for site navigation */}
             </header>
-            
+
             {/* Main Content Area */}
             <main>
-                <Routing />               {/* Routing component to handle navigation and display pages */}
-                <FloatingButton />         {/* Floating button for quick actions */}
-                <ScrollToTopBtn />         {/* Button to scroll to top of the page */}
-                <ScrollToTop />            {/* Handles automatic scroll to top on navigation */}
-                <Toastify />               {/* Toast notifications for real-time user feedback */}
+                <Routing />                     {/* Routing component to handle navigation and display pages */}
+                <FloatingButton />              {/* Floating button for quick actions */}
+                <ScrollToTopBtn />              {/* Button to scroll to top of the page */}
+                <ScrollToTop />                 {/* Handles automatic scroll to top on navigation */}
+                <Toastify />                    {/* Toast notifications for real-time user feedback */}
+                <SelectedCountriesManager />    {/* Component that handles countries election cleanup */}
             </main>
-            
+
             {/* Footer Section */}
             <footer>
                 <Footer />                 {/* Footer with additional links and contact information */}

@@ -19,6 +19,7 @@ import { Day, ItineraryModel } from "../Models/ItineraryModel";
 import { fileService } from "./FileService";
 import { itinerariesActionCreators } from "../Redux/ItinerariesSlice";
 import { OurDealModel } from "../Models/OurDealModel";
+import { selectedCountriesActionCreators } from "../Redux/SelectedCountries";
 
 class OurDealsService {
 
@@ -81,7 +82,7 @@ class OurDealsService {
      */
     public async fetchItineraryBySheetId(itinerarySheetId: string): Promise<ItineraryModel> {
         let itinerary = appStore.getState().itineraries.find(itinerary => itinerary.itinerarySheetId === itinerarySheetId);
-        if(itinerary) return itinerary;
+        if (itinerary) return itinerary;
 
         const rawData = await fileService.fetchDataFromExcel(itinerarySheetId);
 
@@ -109,7 +110,7 @@ class OurDealsService {
         const itinerary: ItineraryModel = {
             itinerarySheetId,
             days: []
-        };        
+        };
         let currentDay: Day | null = null;
 
         data.forEach((row: any) => {
@@ -140,7 +141,59 @@ class OurDealsService {
         }
 
         return itinerary;
-    }
+    };
+
+    /**
+     * Updates the list of selected countries in the application state.
+     * 
+     * This method first clears all previously selected countries in the store and then adds each country from the provided
+     * `selectedCountries` array to the store individually. Ensures that the store reflects the latest selection state.
+     *
+     * @param selectedCountries - An array of strings where each string represents a country to be selected.
+     *
+     * @example
+     * // To update the selected countries with "France" and "Japan":
+     * updateSelectedCountries(["France", "Japan"]);
+     */
+    public updateSelectedCountries(selectedCountries: string[]): void {
+        // Clear all previously selected countries from the store
+        this.deleteSelectedCountries();
+
+        // Add each country in the provided array to the store
+        selectedCountries.forEach(country => {
+            appStore.dispatch(selectedCountriesActionCreators.addOne(country));
+        });
+    };
+
+    /**
+     * Deletes all selected countries from the application's state.
+     * 
+     * This function clears the list of selected countries, effectively resetting
+     * the state related to selected countries in the application.
+    */
+    public deleteSelectedCountries(): void {
+        appStore.dispatch(selectedCountriesActionCreators.deleteAll());
+    };
+
+    /**
+     * Counts the total number of images in a given deal.
+     * 
+     * This method inspects the `mediaLinks` array within the provided `deal` object and filters for media items of type "image".
+     * It returns the total count of image items, allowing quick access to the number of images associated with a deal.
+     * 
+     * @param deal - An instance of `OurDealModel` representing a specific deal. The `deal` object contains a `mediaLinks` array,
+     *               which may include images, videos, or other media types.
+     * 
+     * @returns The number of media items in `deal.mediaLinks` that are of type "image".
+     * 
+     * @example
+     * // Assuming `deal` has three media items, two of which are images:
+     * const imageCount = countImagesInDeal(deal); // Returns 2
+     */
+    public countImagesInDeal = (deal: OurDealModel): number => {
+        return deal.mediaLinks.filter(media => media.type === "image").length;
+    };
+
 }
 
 // Export a singleton instance of OurDealsService for application-wide use

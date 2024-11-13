@@ -9,7 +9,7 @@
  * - `MediaLinkModel`, `OurDealModel`: Data models defining structure for media links and deals.
  */
 
-import { MediaLinkModel, OurDealModel } from "../Models/OurDealModel";
+import { MediaLinkModel } from "../Models/OurDealModel";
 
 class AppService {
     
@@ -68,21 +68,6 @@ class AppService {
      */
     public getImages = (media: MediaLinkModel[]): MediaLinkModel[] => {
         return media.filter(media => media.type === "image");
-    };
-
-    /**
-     * countImagesInDeals
-     * -------------------
-     * Calculates the total number of images across a list of deals by aggregating the image count within
-     * each deal’s media links. This method is useful for tracking and preloading media.
-     * 
-     * @param {OurDealModel[]} deals - Array of deals, each with associated media links.
-     * @returns {number} - Total number of images across all provided deals.
-     */
-    public countImagesInDeals = (deals: OurDealModel[]): number => {
-        return deals.reduce((sum, deal) => 
-            sum + deal.mediaLinks.filter(media => media.type === "image").length, 
-        0);
     };
 };
 

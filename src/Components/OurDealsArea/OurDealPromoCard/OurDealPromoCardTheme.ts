@@ -20,7 +20,8 @@ class OurDealPromoCardTheme {
      * - `padding`: Adds padding inside the card to ensure content has adequate spacing.
      */
     public static promoCard = { 
-        margin: "20px",
+        m: 3,
+        marginBottom: 0,
         width: "100%",
         maxWidth: "1000px",
         padding: "20px"
