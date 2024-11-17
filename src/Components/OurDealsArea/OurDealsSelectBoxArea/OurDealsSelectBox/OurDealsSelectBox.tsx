@@ -63,7 +63,7 @@ export function OurDealsSelectBox(props: OurDealsSelectBoxProps): JSX.Element {
 
         // Update global Redux state with new selection
         ourDealsService.updateSelectedCountries(selected);
-        
+
         notifyDealsUpdate(selected);
     };
 
@@ -99,14 +99,15 @@ export function OurDealsSelectBox(props: OurDealsSelectBoxProps): JSX.Element {
      *
      * @param selectedCountries - The array of currently selected countries
      */
-    const notifyDealsUpdate = (selectedCountries: string[]) =>{
+    const notifyDealsUpdate = (selectedCountries: string[]) => {
         const message = selectedCountries.length > 0
             ? "הדילים עודכנו לפי הסינון שלך"
             : "מציג את כל הדילים";
 
         toast.info(message, {
-            autoClose: 3000,
+            autoClose: 2000,
             transition: Flip,
+            hideProgressBar: true
         });
     };
 
@@ -117,7 +118,7 @@ export function OurDealsSelectBox(props: OurDealsSelectBoxProps): JSX.Element {
                 <ThemeProvider theme={AppTheme.theme}>
                     <FormControl sx={OurDealsSelectBoxTheme.formControl}>
                         {/* Label for multi-select input */}
-                        <InputLabel>סינון לפי יעדים</InputLabel>
+                        <InputLabel sx={{zIndex: 0}}>סינון לפי יעדים</InputLabel>
 
                         {/* Multi-select dropdown for selecting countries */}
                         <Select

@@ -27,6 +27,7 @@ export function Toastify(): JSX.Element {
                 pauseOnHover                        /* Pauses the timer while hovering over the toast */
                 theme="light"                       /* Applies a light theme for toast styling */
                 transition={Bounce}                 /* Bounce effect for toast entry and exit transitions */
+                stacked
             />
         </div>
     );
