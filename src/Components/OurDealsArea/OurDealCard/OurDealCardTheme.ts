@@ -14,12 +14,17 @@ class OurDealCardTheme {
      * Sets the minimum height and fixed width for the deal card, ensuring consistent sizing across instances.
      * 
      * Properties:
-     * - `minHeight`: Provides a minimum height to accommodate card content, creating a balanced layout.
+     * - `height`: Provides a height to accommodate card content, creating a balanced layout.
      * - `width`: Sets a fixed width for the card to standardize card sizes across the UI.
      */
-    public static card = {
-        minHeight: '280px',                    // Minimum height for the card
-        width: 320                              // Fixed width for consistent card sizing
+    public static cardLg = {
+        height: '280px',                    // Height for the card
+        width: 320                          // Fixed width for consistent card sizing
+    };
+
+    public static cardSm = {
+        height: 150,                    // Height for the card
+        width: 300                      // Fixed width for consistent card sizing
     };
 
     /**
@@ -31,8 +36,12 @@ class OurDealCardTheme {
      * - `background`: Uses layered linear gradients to darken the bottom of the card for text contrast,
      *   fading to transparent at the top for a smooth visual effect.
      */
-    public static cardCover = {
+    public static cardCoverLg = {
         background: 'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)' // Double gradient for enhanced text readability
+    };
+
+    public static cardCoverMd = {
+        background: 'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 150px)' // Double gradient for enhanced text readability
     };
 
     /**

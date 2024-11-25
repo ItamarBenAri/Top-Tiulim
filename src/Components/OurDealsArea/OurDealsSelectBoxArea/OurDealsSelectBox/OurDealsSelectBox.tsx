@@ -118,7 +118,11 @@ export function OurDealsSelectBox(props: OurDealsSelectBoxProps): JSX.Element {
                 <ThemeProvider theme={AppTheme.theme}>
                     <FormControl sx={OurDealsSelectBoxTheme.formControl}>
                         {/* Label for multi-select input */}
-                        <InputLabel sx={{zIndex: 0}}>סינון לפי יעדים</InputLabel>
+                        <InputLabel 
+                            sx={{zIndex: 0}} // Ensures the label does not overlap with the dropdown or other elements
+                        >
+                            סינון לפי יעדים
+                        </InputLabel>
 
                         {/* Multi-select dropdown for selecting countries */}
                         <Select

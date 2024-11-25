@@ -17,7 +17,7 @@ import { CalendarMonthRounded } from '@mui/icons-material';
 import { Box } from "@mui/joy";
 import { ImageSlideshow } from "../../SharedArea/ImageSlideshow/ImageSlideshow";
 import { OurDealModel } from "../../../Models/OurDealModel";
-import { Skeleton } from '@mui/material';
+import { Skeleton, useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import OurDealCardTheme from './OurDealCardTheme';
 import { Fragment, useEffect, useState } from 'react';
@@ -30,10 +30,11 @@ type OurDealCardProps = {
 export function OurDealCard(props: OurDealCardProps): JSX.Element {
     const navigate = useNavigate();  // Enables navigation to deal detail page
     const [cardLoaded, setCardLoaded] = useState<boolean>(false); // Tracks loading state of images
+    const matches = useMediaQuery("(max-width: 650px)");
     const imageLinks = props.ourDeal.mediaLinks
         .filter(media => media.type === "image")  // Filters only image-type media links
         .map(media => media.url);
-
+        
     // Effect hook to preload images and update the card's loaded state
     useEffect(() => {
         appService.loadImages(imageLinks)
@@ -51,7 +52,7 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
     return (
         <div className="OurDealCard">
             <Card
-                sx={OurDealCardTheme.card}  // Applies styling for the card container
+                sx={matches ? OurDealCardTheme.cardSm : OurDealCardTheme.cardLg}  // Applies styling for the card container
                 onClick={handleCardClicked} // Attach click event handler for navigation
             >
 
@@ -84,7 +85,7 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
                         </Box>
 
                         {/* Card Content Overlay: Title, Location, and Date */}
-                        <CardCover sx={OurDealCardTheme.cardCover} />
+                        <CardCover sx={matches ? OurDealCardTheme.cardCoverMd : OurDealCardTheme.cardCoverLg} />
                         <CardContent sx={OurDealCardTheme.cardContent}>
                             
                             {/* Deal Title */}
@@ -97,12 +98,14 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
                                 <Typography
                                     startDecorator={<LocationOnRoundedIcon />}
                                     textColor="neutral.300"
+                                    level={matches ? "body-sm" : "body-md"}
                                 >
                                     {props.ourDeal.destination}
                                 </Typography>
                                 <Typography
                                     startDecorator={<CalendarMonthRounded />}
                                     textColor="neutral.300"
+                                    level={matches ? "body-sm" : "body-md"}
                                 >
                                     {props.ourDeal.date}
                                 </Typography>
@@ -115,8 +118,8 @@ export function OurDealCard(props: OurDealCardProps): JSX.Element {
                         <Skeleton
                             variant="rounded"
                             animation="wave"
-                            width={352}
-                            height={312}
+                            width={"100%"}
+                            height={"100%"}
                         />
                     </CardCover>
                 )}
